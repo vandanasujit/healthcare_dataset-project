@@ -41,6 +41,11 @@ set `Date of Admission` = str_to_date(`Date of Admission`,'%Y-%m-%d');
 /* was unable to update by the above statement */
 
 alter table healthcare_datasetstaging3 add `new_Date of Admission` date;
+alter table healthcare_datasetstaging3 add `new_date of discharge` date;
+update healthcare_datasetstaging3
+set `new_date of discharge` = str_to_date(`Discharge Date`, '%Y-%m-%d');
+alter table healthcare_datasetstaging3
+drop `Discharge Date`;
 update healthcare_datasetstaging3
 set `new_Date of Admission`= str_to_date(`Date of Admission`,'%Y-%m-%d');
 alter table healthcare_datasetstaging3
@@ -48,6 +53,9 @@ drop `Date of Admission`;
 
 alter table healthcare_datasetstaging3
 drop row_num2;
+
+
+select `Test Results`,count(`Test Results`) from healthcare_datasetstaging3 group by `Test Results`;
 
 
 
